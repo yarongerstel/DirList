@@ -5,6 +5,14 @@ import sys
 
 
 def make_serch(path, method, value):
+    """
+    Exports data file for the requested search.
+
+    :param path: The path which we will begin to search
+    :param method: method search
+    :param value: Search value
+
+    """
     list_op = {"substring": False, "exrension": False, "folders_that_start_with": False, "folders_that_end_with": False}
     try:
         if method in list_op:
@@ -14,8 +22,8 @@ def make_serch(path, method, value):
         exit()
 
     filetuple = namedtuple('file_details', ['FolderPath', 'FileName', 'CreationDate', 'ModifiedDate', 'DateAccessed'])
-
     headerList = ['FolderPath', 'FileName', 'CreationDate', 'ModifiedDate', 'DateAccessed']
+
     with open("listDir.csv", 'w') as f:
         dw = csv.DictWriter(f, delimiter=',', fieldnames=headerList)
         dw.writeheader()
@@ -59,4 +67,9 @@ def make_serch(path, method, value):
                                                       DateAccessed=os.path.getatime(f'{root}\\{file}')))
 
 
-make_serch(sys.argv[1], sys.argv[2], sys.argv[3])
+def main():
+    make_serch(sys.argv[1], sys.argv[2], sys.argv[3])
+
+
+if __name__ == '__main__':
+    main()
