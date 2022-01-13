@@ -7,11 +7,9 @@ import sys
 def make_serch(path, method, value):
     """
     Exports data file for the requested search.
-
     :param path: The path which we will begin to search
     :param method: method search
     :param value: Search value
-
     """
     list_op = {"substring": False, "exrension": False, "folders_that_start_with": False, "folders_that_end_with": False}
     try:
@@ -58,8 +56,6 @@ def make_serch(path, method, value):
             if list_op["folders_that_end_with"] == True:
                 for directory in dirs:
                     if directory.endswith(value):
-                        print(directory)
-                        print(root)
                         for file in files:
                             writer.writerow(filetuple(FolderPath=root + "\\" + directory, FileName=file,
                                                       CreationDate=os.stat(f'{root}\\{file}').st_atime,
@@ -68,7 +64,8 @@ def make_serch(path, method, value):
 
 
 def main():
-    make_serch(sys.argv[1], sys.argv[2], sys.argv[3])
+    make_serch(r"C:\Windows","folders_that_end_with","t")
+    #make_serch(sys.argv[1], sys.argv[2], sys.argv[3])
 
 
 if __name__ == '__main__':
